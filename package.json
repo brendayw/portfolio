@@ -1,5 +1,15 @@
 {
+  "name": "brenda_portfolio",
+  "version": "1.0.0",
+  "description": "portfolio project",
+  "main": "app.js",
+  "scrips": {
+    "start": "node app.js"
+  },
+  "author": "Brenda Yañez",
+  "license": "ISC",
   "dependencies": {
+    "brenda_portfolio": "file:",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.1"
