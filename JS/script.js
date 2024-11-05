@@ -69,36 +69,30 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const email = document.getElementById('email').value;
   const message = document.getElementById('message').value;
 
-  const apiUrl = 'https://magicloops.dev/api/loop/run/e4e7ff5b-1392-45b6-91e8-06d1b8154b8b';
+  const apiUrl = `https://magicloops.dev/api/loop/run/e4e7ff5b-1392-45b6-91e8-06d1b8154b8b?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
 
   const data = {
     name: name,
     email: email,
     message: message
   };
-  fetch(apiUrl, {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (!response.ok) {
-      return Promise.reject(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Response Data:', data);
-    if (data.success) {
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        return Promise.reject(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response Data:', data);
+      if (data.success) {
         alert('Your message has been sent successfully!');
-    } else {
+      } else {
         alert('Something went wrong, please try again!');
-    }
-  })
-  .catch(error => {
-    console.error('Error sending contact form:', error);
-    alert(`There was an error sending the message: ${error}`);
-  });
+      }
+    })
+    .catch(error => {
+       console.error('Error sending contact form:', error);
+      alert(`There was an error sending the message: ${error}`);
+    })
 });
