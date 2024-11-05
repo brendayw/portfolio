@@ -34,7 +34,6 @@ function switchTheme(e) {
 toggleSwitch.addEventListener("change", switchTheme, false);
 
 //  Store color theme for future visits
-
 function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
@@ -46,23 +45,19 @@ function switchTheme(e) {
 }
 
 // Save user preference on load
-
 const currentTheme = localStorage.getItem("theme")
   ? localStorage.getItem("theme")
   : null;
 
 if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
-
   if (currentTheme === "dark") {
     toggleSwitch.checked = true;
   }
 }
 
 //Adding date
-
 let myDate = document.querySelector("#datee");
-
 const yes = new Date().getFullYear();
 myDate.innerHTML = yes;
 
@@ -70,38 +65,40 @@ myDate.innerHTML = yes;
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
-  const name = document.getElementById('nombre').value;
+  const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
-  const message = document.getElementById('mensaje').value;
-
+  const message = document.getElementById('message').value;
 
   const apiUrl = 'https://magicloops.dev/api/loop/run/e4e7ff5b-1392-45b6-91e8-06d1b8154b8b';
 
-
-  const urlWithParams = `${apiUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
-
-  fetch(urlWithParams, {
-      method: 'POST', 
-      headers: {
-          'Content-Type': 'application/json',  
-      }
+  const data = {
+    name: name,
+    email: email,
+    message: message
+  };
+  fetch(apiUrl, {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
   })
   .then(response => {
-      if (!response.ok) {
-          return Promise.reject(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
+    if (!response.ok) {
+      return Promise.reject(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
   })
   .then(data => {
-      console.log('Response Data:', data);
-      if (data.success) {
-          alert('Your message has been sent successfully!');
-      } else {
-          alert('Something went wrong, please try again!');
-      }
+    console.log('Response Data:', data);
+    if (data.success) {
+        alert('Your message has been sent successfully!');
+    } else {
+        alert('Something went wrong, please try again!');
+    }
   })
   .catch(error => {
-      console.error('Error sending contact form:', error);
-      alert(`There was an error sending the message: ${error}`);
+    console.error('Error sending contact form:', error);
+    alert(`There was an error sending the message: ${error}`);
   });
 });
