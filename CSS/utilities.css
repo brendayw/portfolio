@@ -242,17 +242,17 @@ textarea:focus {
   
 /* project 1 */
 .card:nth-child(1) {
-  background: url(../assets/projects/SupermarketCashier.jpg) center center/cover;
+  background: url(../assets/1724954353616.jfif) center center/cover;
 }
   
 /* Project 2 */
 .card:nth-child(2) {
-  background: url(../assets/projects/SudokuSolver.jpg) center center/cover;
+  background: url(../assets/project/project-two.png) center center/cover;
 }
   
 /* Project 3 */
 .card:nth-child(3) {
-  background: url(../assets/projects/OnlineStore.jpg) center center/cover;
+  background: url(../assets/project/project-three.png) center center/cover;
 }
   
 /* Project 4 */
